@@ -1,0 +1,40 @@
+{
+  "questions": [
+    {
+      "question": "What is a major version of Python you should choose?",
+      "answers": [
+        "3",
+        "3.0",
+        "3.5"
+      ]
+    },
+    {
+      "question": "How to output to console your program?",
+      "answers": [
+        "print",
+        "print()"
+      ]
+    },
+    {
+      "question": "Who is the author of the Python programming language?",
+      "answers": [
+        "guido",
+        "rossum",
+        "guido van rossum"
+      ]
+    },
+    {
+      "question": "What is a function to convert a integer to string?",
+      "answers": [
+        "str",
+        "str()"
+      ]
+    },
+    {
+      "question": "How to call a Zen of Python?",
+      "answers": [
+        "import this"
+      ]
+    }
+  ]
+}
