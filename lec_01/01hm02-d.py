@@ -21,17 +21,18 @@ while True:
     elif username.lower() == "exit":
         break
     else:
-        str_data = open("ques_ans.json").read()
-        jsdata = json.loads(str_data)
-        passed_test = 0
-        print("Let's start testing...")
-        for i in jsdata["questions"]:
-            asked_user = input("{} - ".format(i["question"]))
-            if asked_user.lower() in i["answers"] and len(asked_user) != 0:
-                print("Correct!")
-                passed_test += 1
-            else:
-                print("Wrong!")
+        with open("ques_ans.json") as str_data:
+            str_data = str_data.read()
+            jsdata = json.loads(str_data)
+            passed_test = 0
+            print("Let's start testing...")
+            for i in jsdata["questions"]:
+                asked_user = input("{} - ".format(i["question"]))
+                if asked_user.lower() in i["answers"] and len(asked_user) != 0:
+                    print("Correct!")
+                    passed_test += 1
+                else:
+                    print("Wrong!")
 
         print("Your result: {0} of {1} done".format(passed_test, len(jsdata["questions"])))
 
