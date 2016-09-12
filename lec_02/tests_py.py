@@ -92,7 +92,7 @@ class TestShuffleField(BaseTestClass):
 
 class TestIsGameFinished(BaseTestClass):
     def test_finished_state(self):
-        finished_state = list(range(15))
+        finished_state = list(range(1, 16))
         finished_state.append(EMPTY_MARK)
 
         result = is_game_finished(finished_state)
