@@ -24,7 +24,8 @@ def shuffle_field():
     :return: list with 16 randomly shuffled tiles,
     one of which is a empty space.
     """
-    pass
+    lst_numbers = range(1, 16)
+    return random.sample(lst_numbers, len(lst_numbers)) + [EMPTY_MARK]
 
 
 def print_field(field):
@@ -33,7 +34,8 @@ def print_field(field):
     :param field: current field state to be printed.
     :return: None
     """
-    pass
+    for item in range(0, len(field), 4):
+        print(field[item:item + 4])
 
 
 def is_game_finished(field):
@@ -42,7 +44,13 @@ def is_game_finished(field):
     :param field: current field state.
     :return: True if the game is finished, False otherwise.
     """
-    pass
+
+    if field == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 'x']:
+        print_field(field)
+        return True
+
+    else:
+        return False
 
 
 def perform_move(field, key):
@@ -53,7 +61,20 @@ def perform_move(field, key):
     :return: new field state (after the move).
     :raises: IndexError if the move can't me done.
     """
-    pass
+    index_EmptyMark = field.index(EMPTY_MARK)
+    delta = MOVES[key]
+
+    if (0 <= index_EmptyMark <= 3 and key == 'w') or \
+        (12 <= index_EmptyMark <= 15 and key == 's') or \
+            (index_EmptyMark % 4 == 0 and key == 'a') or \
+            (index_EmptyMark % 4 == 3 and key == 'd'):
+        raise IndexError
+
+    new_index = index_EmptyMark + delta
+
+    field[index_EmptyMark], field[new_index] = field[new_index], field[index_EmptyMark]
+
+    return field
 
 
 def handle_user_input():
@@ -65,7 +86,13 @@ def handle_user_input():
         'd' - right
     :return: <str> current move.
     """
-    pass
+    while True:
+        user_input = input("Enter next step ('w' - up, 's' - down, 'a' - left, 'd' - right): ")
+        if user_input not in MOVES:
+            print("Please enter only these letter ('w' - up, 's' - down, 'a' - left, 'd' - right)")
+            continue
+        else:
+            return user_input
 
 
 def main():
@@ -74,7 +101,21 @@ def main():
     It also calls other methods.
     :return: None
     """
-    pass
+    step = 0
+    field = shuffle_field()
+    while is_game_finished(field) is not True:
+        print_field(field)
+        try:
+            user_input = handle_user_input()
+            perform_move(field, user_input)
+            step += 1
+        except KeyboardInterrupt:
+            print("\nShutting down. Your steps are {}".format(step))
+            break
+        except IndexError:
+            print("Your step is out of field 4x4. Try again.")
+    else:
+        print("You are win. Your steps is {}".format(step))
 
 
 if __name__ == '__main__':
