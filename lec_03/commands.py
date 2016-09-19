@@ -120,3 +120,8 @@ class ExitCommand(BaseCommand):
 
     def perform(self, objects, *args, **kwargs):
         raise UserExitException('See you next time!')
+
+
+class ToReadItem(BaseItem):
+    def __init__(self):
+        pass

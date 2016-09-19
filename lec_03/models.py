@@ -84,3 +84,15 @@ class ToBuyItem(BaseItem):
         heading = input_function('Input heading: ')
         price = input_function('Input price: ')
         return ToBuyItem(heading, price)
+
+
+class ToReadItem(BaseItem):
+    def __init__(self, heading, author_name):
+        pass
+
+    @classmethod
+    def construct(cls):
+        input_function = get_input_function()
+        heading = input_function('Input heading: ')
+        author_name = input_function('Input author: ')
+        return ToBuyItem(heading, author_name)
